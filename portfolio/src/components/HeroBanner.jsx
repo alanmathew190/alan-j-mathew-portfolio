@@ -4,6 +4,8 @@ import Typewriter from "typewriter-effect";
 import Tilt from "react-parallax-tilt";
 import meImg from "../images/me1.png";
 import { useDarkMode } from "./ThemeContext";
+import alangpt from "../images/alangpt.png"
+
 
 function HeroBanner() {
   const { darkMode } = useDarkMode();
@@ -65,9 +67,9 @@ function HeroBanner() {
             <Typewriter
               options={{
                 strings: [
-                  "Frontend Developer",
+                  "Full Stack Developer",
                   "React Developer",
-                  "Tech Explorer",
+                  "Django Backend Developer",
                 ],
                 autoStart: true,
                 loop: true,
@@ -85,9 +87,9 @@ function HeroBanner() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.6, duration: 1 }}
           >
-            BTech graduate and a passionate React FrontEnd Developer with
-            hands-on experience building scalable web applications and intuitive
-            user interfaces.
+            B.Tech graduate specializing in full stack web development, building
+            scalable applications using React, Django, and RESTful APIs with a
+            strong UI focus.
           </motion.p>
 
           {/* Buttons and Links */}
@@ -174,7 +176,7 @@ function HeroBanner() {
             >
               <img
                 className="absolute w-full h-full object-cover object-top"
-                src={meImg}
+                src={alangpt}
                 alt="Alan J Mathew"
               />
             </div>

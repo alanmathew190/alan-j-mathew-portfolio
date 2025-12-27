@@ -15,6 +15,31 @@ function Projects() {
 
   const projects = [
     {
+      img: eventsphere,
+      title: "EventSphere – Event Management System",
+      desc: `
+A feature-rich full-stack event management platform designed for real-world use cases.
+Includes role-based access control, admin approvals, event hosting, paid and free registrations, and QR-code based attendance verification.
+Built using React for the frontend and Django for the backend, focusing on scalability, security, and structured data handling.
+      `,
+      live: "https://event-management-system-snowy-one.vercel.app/",
+      git: "https://github.com/alanmathew190/EventManagementSystem.git",
+      tags: ["React", "Django", "RBAC", "QR Code", "Admin Panel"],
+    },
+    {
+      img: fullstacknotes,
+      title: "Full Stack Notes Application",
+      desc: `
+A complete full-stack notes application with secure user authentication.
+Users can register, log in, and manage personal notes with full CRUD functionality.
+The backend is built using Django REST Framework with JWT authentication and PostgreSQL for persistent storage.
+This project demonstrates full-stack integration, authentication workflows, and RESTful API design.
+      `,
+      live: "https://notes-full-stack-app.vercel.app/",
+      git: "https://github.com/alanmathew190/NotesFullStackApp.git",
+      tags: ["React", "Django", "JWT", "PostgreSQL"],
+    },
+    {
       img: todo,
       title: "To-Do List Application (React)",
       desc: `
@@ -29,7 +54,7 @@ This app demonstrates strong understanding of React fundamentals, props, state h
     },
     {
       img: weather,
-      title: "Weather Forecast Application",
+      title: "Weather Forecast Application (React)",
       desc: `
 A real-time weather application that allows users to search for any city and instantly view current weather conditions.
 The app consumes a public weather API and dynamically updates the UI based on fetched data.
@@ -62,31 +87,6 @@ Designed with a clean UI, dark mode support, and interactive sections to improve
       live: "https://react-portfolio-c8ri.vercel.app/",
       git: "https://github.com/alanmathew190/react-portfolio.git",
       tags: ["React", "Tailwind CSS", "Framer Motion"],
-    },
-    {
-      img: fullstacknotes,
-      title: "Full Stack Notes Application",
-      desc: `
-A complete full-stack notes application with secure user authentication.
-Users can register, log in, and manage personal notes with full CRUD functionality.
-The backend is built using Django REST Framework with JWT authentication and PostgreSQL for persistent storage.
-This project demonstrates full-stack integration, authentication workflows, and RESTful API design.
-      `,
-      live: "https://notes-full-stack-app.vercel.app/",
-      git: "https://github.com/alanmathew190/NotesFullStackApp.git",
-      tags: ["React", "Django", "JWT", "PostgreSQL"],
-    },
-    {
-      img: eventsphere,
-      title: "EventSphere – Event Management System",
-      desc: `
-A feature-rich full-stack event management platform designed for real-world use cases.
-Includes role-based access control, admin approvals, event hosting, paid and free registrations, and QR-code based attendance verification.
-Built using React for the frontend and Django for the backend, focusing on scalability, security, and structured data handling.
-      `,
-      live: "https://event-management-system-snowy-one.vercel.app/",
-      git: "https://github.com/alanmathew190/EventManagementSystem.git",
-      tags: ["React", "Django", "RBAC", "QR Code", "Admin Panel"],
     },
   ];
 
