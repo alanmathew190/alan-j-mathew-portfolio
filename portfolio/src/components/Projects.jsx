@@ -1,196 +1,229 @@
-import React from "react";
-import { motion, useInView } from "framer-motion";
+import React, { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import Tilt from "react-parallax-tilt";
 import weather from "../images/weatherapp.png";
 import todo from "../images/toda.png";
-import form1 from "../images/form.png";
+import fullstacknotes from "../images/notesappfull.png";
 import netflix from "../images/netflix.png";
-import notesapp from "../images/notesapp.png";
+import eventsphere from "../images/eventsphere.png";
 import port from "../images/port.png";
 import { useDarkMode } from "./ThemeContext";
-import "../App.css";
-
 
 function Projects() {
   const { darkMode } = useDarkMode();
+  const [selectedProject, setSelectedProject] = useState(null);
 
   const projects = [
     {
       img: todo,
-      title: "To-do List React App",
-      desc: "Add, delete, reorder tasks seamlessly with dynamic UI interactions.",
+      title: "To-Do List Application (React)",
+      desc: `
+A fully interactive task management application built using React.
+Users can add, delete, and reorder tasks dynamically with smooth UI updates.
+The project focuses on component-based architecture, state management, and clean UI interactions.
+This app demonstrates strong understanding of React fundamentals, props, state handling, and user-driven workflows.
+      `,
       live: "https://react-arcite-green.vercel.app/",
-      git: "https://github.com/alanmathew190/reactArcite/tree/867337c62d5c32c2041f8b4fd1f93a15f2f02fcc/day5/day5-1",
-      tags: ["React", "JS", "UI"],
+      git: "https://github.com/alanmathew190/reactArcite",
+      tags: ["React", "State Management", "UI Logic"],
     },
     {
       img: weather,
-      title: "React Weather App",
-      desc: "Real-time weather updates for any city with dynamic backgrounds.",
+      title: "Weather Forecast Application",
+      desc: `
+A real-time weather application that allows users to search for any city and instantly view current weather conditions.
+The app consumes a public weather API and dynamically updates the UI based on fetched data.
+It includes error handling for invalid city inputs and demonstrates API integration, conditional rendering, and responsive design.
+      `,
       live: "https://react-weather-app-nine-nu.vercel.app/",
       git: "https://github.com/alanmathew190/React-Weather-App.git",
-      tags: ["React", "API", "Weather"],
-    },
-    {
-      img: form1,
-      title: "React Form Validation App",
-      desc: "Sign-up & login app with real-time input validation and responsive design.",
-      live: "https://alanmathew190.github.io/form-validation/",
-      git: "https://github.com/alanmathew190/form-validation.git",
-      tags: ["React", "Form", "Validation"],
-    },
-    {
-      img: notesapp,
-      title: "React Notes App",
-      desc: "A simple notes application to create, update, and delete notes with persistent storage.",
-      live: "https://react-arcite.vercel.app/",
-      git: "https://github.com/alanmathew190/reactArcite/tree/737ff9fc4129763f1e86320fb20ad03d98993ad2/assignments/note-app",
-      tags: ["React", "Notes", "Storage"],
+      tags: ["React", "REST API", "Error Handling"],
     },
     {
       img: netflix,
-      title: "Netflix Clone (React)",
-      desc: "A Netflix clone built with React, fetching data from TMDB API with Top Rated, Popular, and LocalStorage-based persistence.",
+      title: "Netflix Clone (TMDB API)",
+      desc: `
+A Netflix-inspired web application built with React that fetches movie and TV show data from the TMDB API.
+Features include categorized listings such as Top Rated and Popular content, dynamic rendering, and localStorage usage.
+The project focuses on API-driven UI, reusable components, and real-world data handling.
+      `,
       live: "https://netflix-clone-app-bp9p.vercel.app/",
       git: "https://github.com/alanmathew190/Netflix-Clone-App.git",
-      tags: ["React", "API", "TMDB"],
+      tags: ["React", "TMDB API", "Dynamic Rendering"],
     },
     {
       img: port,
-      title: "Personal Portfolio (React)",
-      desc: "A modern, interactive portfolio built with React and Tailwind CSS, showcasing my skills, projects, and a clean, responsive web design.",
+      title: "Personal Portfolio Website",
+      desc: `
+A modern and responsive personal portfolio built using React and Tailwind CSS.
+The website showcases projects, skills, and experience with smooth animations powered by Framer Motion.
+Designed with a clean UI, dark mode support, and interactive sections to improve user engagement and readability.
+      `,
       live: "https://react-portfolio-c8ri.vercel.app/",
       git: "https://github.com/alanmathew190/react-portfolio.git",
-      tags: ["React", "Components", "TailwindCSS"],
+      tags: ["React", "Tailwind CSS", "Framer Motion"],
+    },
+    {
+      img: fullstacknotes,
+      title: "Full Stack Notes Application",
+      desc: `
+A complete full-stack notes application with secure user authentication.
+Users can register, log in, and manage personal notes with full CRUD functionality.
+The backend is built using Django REST Framework with JWT authentication and PostgreSQL for persistent storage.
+This project demonstrates full-stack integration, authentication workflows, and RESTful API design.
+      `,
+      live: "https://notes-full-stack-app.vercel.app/",
+      git: "https://github.com/alanmathew190/NotesFullStackApp.git",
+      tags: ["React", "Django", "JWT", "PostgreSQL"],
+    },
+    {
+      img: eventsphere,
+      title: "EventSphere – Event Management System",
+      desc: `
+A feature-rich full-stack event management platform designed for real-world use cases.
+Includes role-based access control, admin approvals, event hosting, paid and free registrations, and QR-code based attendance verification.
+Built using React for the frontend and Django for the backend, focusing on scalability, security, and structured data handling.
+      `,
+      live: "https://event-management-system-snowy-one.vercel.app/",
+      git: "https://github.com/alanmathew190/EventManagementSystem.git",
+      tags: ["React", "Django", "RBAC", "QR Code", "Admin Panel"],
     },
   ];
 
   return (
-    <div
-      className={`relative min-h-screen py-16 px-6 flex flex-col items-center transition-colors duration-500 overflow-hidden ${
+    <section
+      id="projects"
+      className={`min-h-screen py-16 px-6 ${
         darkMode ? "bg-[#000011]" : "bg-[#FFFDF2]"
       }`}
-      id="projects"
     >
-      {/* Animated gradient background for light mode */}
-      {!darkMode && (
-        <div className="absolute inset-0 -z-10 bg-gradient-to-r from-cyan-100 via-pink-100 to-yellow-100 animate-gradient-x opacity-50"></div>
-      )}
+      <h2 className="text-4xl font-bold text-center mb-12">My Projects</h2>
 
-      <h2
-        className={`text-4xl font-bold text-center mb-12 relative inline-block`}
-      >
-        My Projects
-        <span
-          className={`absolute -bottom-2.5 left-1/2 transform -translate-x-1/2 w-1/3 h-1 rounded ${
-            darkMode ? "bg-purple-500" : "bg-green-400"
-          }`}
-        ></span>
-      </h2>
-
-      <div className="w-full max-w-5xl grid md:grid-cols-2 gap-10 z-10">
+      {/* Project Grid */}
+      <div className="max-w-5xl mx-auto grid md:grid-cols-2 gap-10">
         {projects.map((project, index) => (
-          <Tilt
-            glareEnable={true}
-            glareMaxOpacity={darkMode ? 0.05 : 0.1}
-            scale={1.02}
-            transitionSpeed={500}
-            key={index}
-          >
+          <Tilt key={index} scale={1.04}>
             <motion.div
-              initial={{ opacity: 0, y: 50, rotateY: -5 }}
-              whileInView={{ opacity: 1, y: 0, rotateY: 0 }}
-              viewport={{ once: true, amount: 0.5 }}
-              transition={{
-                duration: 0.7,
-                ease: "easeOut",
-                delay: index * 0.15,
-              }}
-              className={`relative rounded-2xl overflow-hidden shadow-xl border transition-all duration-300 transform hover:scale-105 hover:shadow-cyan-300/40 ${
+              whileHover={{ y: -8 }}
+              onClick={() => setSelectedProject(project)}
+              className={`cursor-pointer rounded-2xl overflow-hidden shadow-xl border ${
                 darkMode
                   ? "bg-[#0d0d1a] border-gray-700"
-                  : "bg-white/50 border-gray-200 backdrop-blur-md"
+                  : "bg-white border-gray-200"
               }`}
             >
-              {/* Gradient overlay for light mode */}
-              {!darkMode && (
-                <div className="absolute inset-0 bg-gradient-to-br from-cyan-50/50 to-blue-100/50 mix-blend-multiply pointer-events-none"></div>
-              )}
-
-              {/* Project Image */}
               <img
                 src={project.img}
                 alt={project.title}
-                className="w-full h-48 object-cover relative z-10"
+                className="w-full h-48 object-cover"
               />
-
-              {/* Project Info */}
-              <div className="p-6 relative z-20">
-                <h3
-                  className={`text-xl font-bold transition-colors duration-500 ${
-                    darkMode ? "text-white" : "text-gray-900"
-                  }`}
-                >
-                  {project.title}
-                </h3>
-                <p
-                  className={`mt-3 text-sm leading-relaxed transition-colors duration-500 ${
-                    darkMode ? "text-gray-400" : "text-gray-700"
-                  }`}
-                >
-                  {project.desc}
+              <div className="p-5">
+                <h3 className="text-xl font-bold">{project.title}</h3>
+                <p className="text-xs text-gray-400 mt-1">
+                  Click to view details →
                 </p>
+              </div>
+            </motion.div>
+          </Tilt>
+        ))}
+      </div>
 
-                {/* Tags */}
-                <div className="flex flex-wrap gap-2 mt-4">
-                  {project.tags.map((tag, idx) => (
+      {/* ✨ ENHANCED MODAL */}
+      <AnimatePresence>
+        {selectedProject && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            onClick={() => setSelectedProject(null)}
+            className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 backdrop-blur-md"
+          >
+            <motion.div
+              initial={{ y: 40, scale: 0.9, opacity: 0 }}
+              animate={{ y: 0, scale: 1, opacity: 1 }}
+              exit={{ y: 40, scale: 0.9, opacity: 0 }}
+              transition={{ duration: 0.35, ease: "easeOut" }}
+              onClick={(e) => e.stopPropagation()}
+              className={`relative max-w-xl w-full mx-4 rounded-3xl p-7 shadow-2xl border ${
+                darkMode
+                  ? "bg-[#0d0d1a]/90 border-purple-500/30"
+                  : "bg-white/80 border-cyan-300/40 backdrop-blur-xl"
+              }`}
+            >
+              {/* Gradient Accent Bar */}
+              <div className="absolute top-0 left-0 w-full h-1 rounded-t-3xl bg-gradient-to-r from-cyan-400 via-purple-500 to-pink-500" />
+
+              {/* Title */}
+              <h3 className="text-2xl font-bold mb-2">
+                {selectedProject.title}
+              </h3>
+
+              {/* Divider */}
+              <div className="w-12 h-1 bg-gradient-to-r from-cyan-400 to-purple-500 rounded mb-5" />
+
+              {/* Description Box */}
+              <div
+                className={`rounded-xl p-4 mb-6 text-sm leading-relaxed ${
+                  darkMode
+                    ? "bg-[#141428] text-gray-300"
+                    : "bg-cyan-50 text-gray-700"
+                }`}
+              >
+                {selectedProject.desc}
+              </div>
+
+              {/* Tech Stack */}
+              <div className="mb-6">
+                <p className="text-xs uppercase tracking-widest text-gray-400 mb-3">
+                  Tech Stack
+                </p>
+                <div className="flex flex-wrap gap-2">
+                  {selectedProject.tags.map((tag, i) => (
                     <motion.span
-                      key={idx}
                       whileHover={{ scale: 1.1 }}
-                      className={`px-3 py-1 rounded-full text-xs font-medium shadow-sm transition-colors duration-300 ${
+                      key={i}
+                      className={`px-3 py-1 text-xs rounded-full font-medium ${
                         darkMode
                           ? "bg-gradient-to-r from-cyan-500 to-purple-600 text-white"
-                          : "bg-cyan-100/70 text-cyan-800 backdrop-blur-sm"
+                          : "bg-cyan-100 text-cyan-800"
                       }`}
                     >
                       {tag}
                     </motion.span>
                   ))}
                 </div>
-
-                {/* Buttons */}
-                <div className="flex gap-4 mt-5">
-                  <a
-                    href={project.live}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className={`flex-1 text-center px-4 py-2 rounded-lg font-medium shadow-md transition-all duration-300 hover:scale-105 ${
-                      darkMode
-                        ? "bg-gradient-to-r from-orange-400 to-yellow-500 text-white"
-                        : "bg-cyan-500/60 hover:bg-cyan-500/80 text-white backdrop-blur-sm"
-                    }`}
-                  >
-                    Live Demo
-                  </a>
-                  <a
-                    href={project.git}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className={`flex-1 text-center px-4 py-2 rounded-lg font-medium shadow-md transition-all duration-300 hover:scale-105 ${
-                      darkMode
-                        ? "bg-gradient-to-r from-blue-500 to-indigo-600 text-white"
-                        : "bg-blue-500/60 hover:bg-blue-500/80 text-white backdrop-blur-sm"
-                    }`}
-                  >
-                    GitHub
-                  </a>
-                </div>
               </div>
+
+              {/* Actions */}
+              <div className="flex gap-4">
+                <a
+                  href={selectedProject.live}
+                  target="_blank"
+                  className="flex-1 text-center py-3 rounded-xl font-semibold text-white bg-gradient-to-r from-cyan-500 to-blue-500 hover:scale-105 transition"
+                >
+                  Live Demo
+                </a>
+                <a
+                  href={selectedProject.git}
+                  target="_blank"
+                  className="flex-1 text-center py-3 rounded-xl font-semibold text-white bg-gradient-to-r from-indigo-500 to-purple-600 hover:scale-105 transition"
+                >
+                  GitHub
+                </a>
+              </div>
+
+              {/* Close */}
+              <button
+                onClick={() => setSelectedProject(null)}
+                className="absolute top-4 right-4 text-gray-400 hover:text-red-400 transition"
+              >
+                ✕
+              </button>
             </motion.div>
-          </Tilt>
-        ))}
-      </div>
-    </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </section>
   );
 }
 
