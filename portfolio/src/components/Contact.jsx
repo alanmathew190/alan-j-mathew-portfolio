@@ -11,6 +11,8 @@ import {
 } from "react-icons/fa";
 import { Element } from "react-scroll";
 import { useDarkMode } from "./ThemeContext";
+import emailjs from "emailjs-com";
+
 
 const Contact = () => {
 const { darkMode } = useDarkMode();
@@ -20,6 +22,8 @@ const { darkMode } = useDarkMode();
     message: "",
   });
   const [step, setStep] = useState(1);
+const [loading, setLoading] = useState(false);
+const [success, setSuccess] = useState(false);
 
   const codeSnippet = [
     "// Initialize Alan's contact form API client",
@@ -84,13 +88,36 @@ const { darkMode } = useDarkMode();
     if (e.target.name === "email" && e.target.value.trim() !== "") setStep(3);
     if (e.target.name === "message" && e.target.value.trim() !== "") setStep(4);
   };
+const handleSubmit = (e) => {
+  e.preventDefault();
+  setLoading(true);
+  setSuccess(false);
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    alert(`Form submitted! Data: ${JSON.stringify(formData)}`);
-    setFormData({ name: "", email: "", message: "" });
-    setStep(1);
-  };
+  emailjs
+    .send(
+      "service_fwiiy4z",
+      "template_qth2lz6",
+      {
+        from_name: formData.name,
+        from_email: formData.email,
+        message: formData.message,
+      },
+      "bjoSYB7QE_bswMXRa"
+    )
+    .then(() => {
+      setLoading(false);
+      setSuccess(true);
+      setFormData({ name: "", email: "", message: "" });
+      setStep(1);
+
+      setTimeout(() => setSuccess(false), 4000);
+    })
+    .catch((error) => {
+      setLoading(false);
+      console.error("EmailJS Error:", error);
+    });
+};
+
 
   return (
     <Element
@@ -276,13 +303,50 @@ const { darkMode } = useDarkMode();
                   {step >= 4 && (
                     <button
                       type="submit"
-                      className="w-full flex items-center justify-center space-x-2 px-6 py-3 border border-transparent text-base font-medium rounded-md shadow-lg text-white bg-gradient-to-r from-cyan-600 to-blue-700 hover:from-cyan-700 hover:to-blue-800 focus:outline-none focus:ring-4 focus:ring-cyan-500 focus:ring-opacity-50 transition transform hover:-translate-y-0.5 duration-300"
+                      disabled={loading}
+                      className={`w-full flex items-center justify-center space-x-3 px-6 py-3 rounded-md shadow-lg text-white transition duration-300 ${
+                        loading
+                          ? "bg-gray-400 cursor-not-allowed"
+                          : "bg-gradient-to-r from-cyan-600 to-blue-700 hover:from-cyan-700 hover:to-blue-800 hover:-translate-y-0.5"
+                      }`}
                     >
-                      <FaPaperPlane className="text-lg" />
-                      <span>Execute Client.Send()</span>
+                      {loading ? (
+                        <>
+                          <svg
+                            className="animate-spin h-5 w-5 text-white"
+                            viewBox="0 0 24 24"
+                          >
+                            <circle
+                              className="opacity-25"
+                              cx="12"
+                              cy="12"
+                              r="10"
+                              stroke="currentColor"
+                              strokeWidth="4"
+                              fill="none"
+                            />
+                            <path
+                              className="opacity-75"
+                              fill="currentColor"
+                              d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"
+                            />
+                          </svg>
+                          <span>Sending...</span>
+                        </>
+                      ) : (
+                        <>
+                          <FaPaperPlane className="text-lg" />
+                          <span>Execute Client.Send()</span>
+                        </>
+                      )}
                     </button>
                   )}
                 </form>
+                {success && (
+                  <div className="mt-6 p-4 rounded-lg bg-green-100 border border-green-300 text-green-800 animate-fade-in">
+                    ✅ Message sent successfully! I’ll get back to you soon.
+                  </div>
+                )}
               </div>
             </div>
             {/* Contact Info */}
