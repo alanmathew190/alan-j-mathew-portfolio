@@ -2,7 +2,6 @@ import React from "react";
 import { motion } from "framer-motion";
 import Typewriter from "typewriter-effect";
 import Tilt from "react-parallax-tilt";
-import meImg from "../images/me1.png";
 import { useDarkMode } from "./ThemeContext";
 import alangpt from "../images/alangpt.png"
 
@@ -101,7 +100,7 @@ function HeroBanner() {
           >
             {/* Resume Download */}
             <motion.a
-              href="/AlanResume14-10-25.pdf"
+              href="/AlanResume28-12-25.pdf"
               download
               className="bg-gradient-to-r from-cyan-600 to-blue-700 px-7 py-3 font-semibold text-white rounded-full shadow-lg hover:shadow-xl transition transform hover:-translate-y-1 text-lg mb-4 sm:mb-0 sm:mr-5"
               whileHover={{ scale: 1.05 }}
