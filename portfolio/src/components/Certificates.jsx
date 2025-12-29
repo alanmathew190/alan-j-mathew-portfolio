@@ -41,7 +41,7 @@ function Certificates() {
       <h2
         className={`text-4xl font-bold left-1/2 transform -translate-x-1/2 text-center mb-12 relative inline-block`}
       >
-        📜 Certificates
+        Certificates
         <span
           className={`absolute -bottom-2.5 left-1/2 transform -translate-x-1/2 w-1/3 h-1 rounded ${
             darkMode ? "bg-purple-500" : "bg-green-400"

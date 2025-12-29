@@ -97,7 +97,10 @@ Designed with a clean UI, dark mode support, and interactive sections to improve
         darkMode ? "bg-[#000011]" : "bg-[#FFFDF2]"
       }`}
     >
-      <h2 className="text-4xl font-bold text-center mb-12">My Projects</h2>
+      <h2 className="text-4xl font-bold text-center mb-12 relative">
+        My Projects
+        <span className="absolute -bottom-2 left-1/2 -translate-x-1/2 w-1/15 h-1 bg-cyan-500 rounded"></span>
+      </h2>
 
       {/* Project Grid */}
       <div className="max-w-5xl mx-auto grid md:grid-cols-2 gap-10">

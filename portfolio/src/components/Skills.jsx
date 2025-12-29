@@ -33,14 +33,18 @@ const icons = [
 ];
 
 const skills = [
-  "Frontend Developer",
+  "Full Stack Developer",
   "React",
-  "Git",
+  "Django",
   "JavaScript",
-  "TailwindCSS",
-  "Web Hosting",
-  "Responsive Design",
+  "REST APIs",
+  "JWT Authentication",
+  "PostgreSQL",
+  "Tailwind CSS",
+  "Git & GitHub",
+  "Deployment",
 ];
+
 
 function Skills() {
   const { darkMode } = useDarkMode();
